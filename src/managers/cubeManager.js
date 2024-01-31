@@ -26,21 +26,21 @@ exports.getAll = () => Cube.find()
 
 // exports.search = (search, from, to) => {
 
-//     let result = cubes.slice()
+//     let query = {}
 
 //     if(search){
-//         result = result.filter(cube => cube.name.toLowerCase().includes(search.toLowerCase()))
+//         query.name = name.toLowerCase().includes(search.toLowerCase())
 //     }
 
 //     if(from){
-//         result = result.filter(cube => cube.difficultyLevel >= Number(from))
+//         query.difficultyLevel = from.filter(cube => cube.difficultyLevel >= Number(from))
 //     }
 
 //     if(to){
-//         result = result.filter(cube => cube.difficultyLevel <= Number(to))
+//         query.difficultyLevel = to.filter(cube => cube.difficultyLevel <= Number(to))
 //     }
 
-//     return result
+//     return Cube.find(query)
 // }
 
 exports.create = async (cubeData) => {

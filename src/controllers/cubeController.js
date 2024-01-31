@@ -19,6 +19,7 @@ router.post('/create', async (req, res) => {
   })
 
 
+
   router.get('/:cubeId/details', async (req, res) => {
    try{
     const cubeId = req.params.cubeId

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
+const AccessoriesModel = require("../models/Accessory")
 
 const cubeSchema = new Schema({
     name: {
@@ -20,7 +21,7 @@ const cubeSchema = new Schema({
     },
     accessories: {
         type: mongoose.Types.ObjectId,
-        // ref: AccessoriesModel
+        ref: 'Accesory'
     }
 })
 
