@@ -21,39 +21,33 @@ const Cube = require("../models/Cube")
 // ]
 
 
-exports.getAll = async () => await Cube.find()
+exports.getAll = () => Cube.find()
 
 
-exports.search = (search, from, to) => {
+// exports.search = (search, from, to) => {
 
-    let result = cubes.slice()
+//     let result = cubes.slice()
 
-    if(search){
-        result = result.filter(cube => cube.name.toLowerCase().includes(search.toLowerCase()))
-    }
+//     if(search){
+//         result = result.filter(cube => cube.name.toLowerCase().includes(search.toLowerCase()))
+//     }
 
-    if(from){
-        result = result.filter(cube => cube.difficultyLevel >= Number(from))
-    }
+//     if(from){
+//         result = result.filter(cube => cube.difficultyLevel >= Number(from))
+//     }
 
-    if(to){
-        result = result.filter(cube => cube.difficultyLevel <= Number(to))
-    }
+//     if(to){
+//         result = result.filter(cube => cube.difficultyLevel <= Number(to))
+//     }
 
-    return result
+//     return result
+// }
+
+exports.create = async (cubeData) => {
+   const cube = new Cube(cubeData)
+
+    await cube.save()
+    return cube
 }
 
-exports.create = (cubeData) => {
-   const newCube = {
-        id: uniqid(),
-        ...cubeData
-    }
-
-    cubes.push(newCube);
-
-
-
-    return newCube
-}
-
-exports.getOne = (cubeId) => cubes.find(x => x.id === cubeId)
+// exports.getOne = (cubeId) => cubes.find(x => x.id === cubeId)
