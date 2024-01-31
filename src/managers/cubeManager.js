@@ -50,4 +50,4 @@ exports.create = async (cubeData) => {
     return cube
 }
 
-// exports.getOne = (cubeId) => cubes.find(x => x.id === cubeId)
+exports.getOne = (cubeId) => Cube.findById(cubeId)

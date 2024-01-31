@@ -7,9 +7,9 @@ const cubeController = require("./controllers/cubeController")
 // Routes
 router.use(homeController)
 router.use('/cubes', cubeController)
-router.get('*', (req, res) => {
-    res.redirect('404')
-})
+// router.get('*', (req, res) => {
+//     res.redirect('404')
+// })
 
 module.exports = router
 
