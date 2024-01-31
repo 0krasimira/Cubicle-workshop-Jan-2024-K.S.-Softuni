@@ -1,9 +1,7 @@
 const Accesory = require("../models/Accessory")
 
-exports.createAccessory = async (name, description, imageUrl) => {
-    const accessory = new Accesory(name, description, imageUrl)
- 
-     await accessory.save()
-     return accessory
- }
+exports.createAccessory = (accessoryData) => Accesory.create(accessoryData)
 
+exports.getOneAccessory = (accessoryId) => Accesory.findByIdAndUpdate(accessoryId)
+ 
+exports.getAll = () => Accesory.find()

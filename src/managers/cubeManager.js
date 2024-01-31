@@ -50,4 +50,4 @@ exports.create = async (cubeData) => {
     return cube
 }
 
-exports.getOne = (cubeId) => Cube.findById(cubeId)
+exports.getOne = (cubeId) => Cube.findById(cubeId).populate("accessories")
