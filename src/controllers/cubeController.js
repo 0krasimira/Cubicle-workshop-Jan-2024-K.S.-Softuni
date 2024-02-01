@@ -43,5 +43,11 @@ router.post('/create', async (req, res) => {
     res.render('accessories/attachAccessory', {...cube, accessories, hasAccessories}) 
 })
 
+router.post('/:cubeId/attach', async (req, res) => {
+   const {accessory} = req.body
+   const cubeId = req.params.cubeId
+   await cubeManager.attachAccessory(cubeId, accessory)
+   res.redirect(`/cubes/${cubeId}/details`)
+})
 
 module.exports = router
