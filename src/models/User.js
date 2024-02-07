@@ -1,13 +1,25 @@
-const mongoose = require("mongoose")
-const Schema = require("mongoose").Schema
+const mongoose = require('mongoose')
 
-const UserSchema = new Schema({
-    username: {
-        type: String,
-        required: true
-    },
+const userSchema = new mongoose.Schema({
+    username: String,
     password: {
         type: String,
-        required: true
-    }
+        // validate:{
+        //     validator: function(value){
+        //         return this.repeatPassword === value
+        //     },
+        //     message: 'Password missmatch!'
+        // }
+    },
 })
+
+userSchema.virtual('repeatPassword')
+.set(function(value){
+     if(value !== this.password){
+        throw new mongoose.MongooseError('Passwords do not match!')
+     }
+})
+
+const User = mongoose.model('User', userSchema)
+
+module.exports = User
