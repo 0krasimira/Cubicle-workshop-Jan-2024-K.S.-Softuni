@@ -25,11 +25,12 @@ router.post('/create', async (req, res) => {
   router.get('/:cubeId/details', async (req, res) => {
    try{
     const cubeId = req.params.cubeId
-    let cube = await cubeManager.getOne(cubeId).lean()
+    const cube = await cubeManager.getOne(cubeId).lean()
     if(!cube){
         return res.redirect('/404')
     }
-    res.render("cube/details", {...cube})
+    const isOwner = cube.owner?.toString() === req.user._id
+    res.render("cube/details", {...cube, isOwner})
     }catch(error) {
         console.log(error)
     }
