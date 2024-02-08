@@ -11,6 +11,8 @@ exports.auth = async (req, res, next) => { // check if valid logged user. if the
         try{
             const decodedToken = await jwt.verify(token, SECRET);
             req.user = decodedToken;
+            res.locals.user = decodedToken;
+            res.locals.isAuthenticated = true // lives within each request, helps the view engine show the details of the particular request
             next()
         } catch (err){
             res.clearCookie("username");
@@ -21,4 +23,11 @@ exports.auth = async (req, res, next) => { // check if valid logged user. if the
         next()
     }
     
+}
+
+exports.isAuth = (req, res, next) => {
+    if(!req.user) {
+        return res.redirect('/users/login')
+    }
+    next()
 }
