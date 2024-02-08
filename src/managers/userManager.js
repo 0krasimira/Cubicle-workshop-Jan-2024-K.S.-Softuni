@@ -1,5 +1,8 @@
 const User = require('../models/User');
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
+const jwt = require("../lib/jwt");
+
+const {SECRET} = require("../config/config")
 
 // TIODO: Check if user exists
 
@@ -22,8 +25,19 @@ exports.login = async (username, password) => {
         throw new Error("Cannot find username or password")
     }
 
+    //TODO: create token
+
+    const payload = {
+        _id: user._id,
+        username: user.username
+    }
+
+    const token = await jwt.sign(payload, SECRET, {expiresIn: "2d"})
+
     //TODO: return user
 
-    return user;
+    return token;
 }
+
+
 
