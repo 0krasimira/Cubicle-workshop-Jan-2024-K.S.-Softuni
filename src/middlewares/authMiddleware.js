@@ -9,8 +9,8 @@ exports.auth = async (req, res, next) => { // check if valid logged user. if the
     if(token) {
         //validate token
         try{
-            const user = await jwt.verify(token, SECRET);
-            req.user = user;
+            const decodedToken = await jwt.verify(token, SECRET);
+            req.user = decodedToken;
             next()
         } catch (err){
             res.clearCookie("username");

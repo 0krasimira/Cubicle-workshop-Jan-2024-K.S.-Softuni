@@ -25,6 +25,10 @@ exports.getAll = () => Cube.find()
 
 exports.create = (cubeData) => Cube.create(cubeData)
 
+exports.delete = (cubeId) => Cube.findByIdAndDelete(cubeId)
+
+exports.update = (cubeId, cubeData) => Cube.findByIdAndUpdate(cubeId, cubeData)
+
 exports.getOne = (cubeId) => Cube.findById(cubeId).populate("accessories")
 
 exports.attachAccessory = (cubeId, accessory) => {
